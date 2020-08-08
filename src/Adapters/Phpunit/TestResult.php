@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace NunoMaduro\Collision\Adapters\Phpunit;
 
+use NunoMaduro\Collision\Contracts\Adapters\Phpunit\HasPrintableTestCaseName;
 use PHPUnit\Framework\TestCase;
 use Throwable;
 
@@ -114,6 +115,10 @@ final class TestResult
     {
         $name = $testCase->getName(false);
 
+        if ($testCase instanceof HasPrintableTestCaseName) {
+            return $name;
+        }
+
         // First, lets replace underscore by spaces.
         $name = str_replace('_', ' ', $name);
 
@@ -148,15 +153,15 @@ final class TestResult
     {
         switch ($type) {
             case self::FAIL:
-                return '•';
+                return '⨯';
             case self::SKIPPED:
-                return 's';
+                return '-';
             case self::RISKY:
-                return 'r';
+                return '!';
             case self::INCOMPLETE:
-                return 'i';
+                return '…';
             case self::WARN:
-                return 'w';
+                return '!';
             case self::RUNS:
                 return '•';
             default:

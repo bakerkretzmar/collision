@@ -6,6 +6,33 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [5.0.0-BETA4] - 2020-06-25
+### Changed
+- Makes `artisan test` command PHPUNit 9 only ([ac6032d](https://github.com/nunomaduro/collision/commit/ac6032dd5546104ce9ae4143f46f391729bfc2ef))
+
+## [5.0.0-BETA3] - 2020-06-22
+### Changed
+- Makes `artisan test` command Laravel 8 only ([ba26119](https://github.com/nunomaduro/collision/commit/ba26119149a7e42fbace9c09584596d313a535fd))
+- Icons on printer ([#122](https://github.com/nunomaduro/collision/pull/122))
+
+## [5.0.0-BETA2] - 2020-06-05
+### Fixed
+- Lowercasing names on Pest ([5e853c5](https://github.com/nunomaduro/collision/commit/5e853c54ceba7e6abf608957b944d20bb5d5ea6c))
+
+## [5.0.0-BETA1] - 2020-05-11
+### Added
+- Uses Pest as test runner on `TestCommand` in Laravel
+- Improvements on PHPUnit Printer Console UI
+- Adds support to `stop-on-failure` in printer and test command
+- Improvements on exception handler output
+
+### Changed
+- Makes some classes final & internal that will lead for a refactor in the `v6` version.
+
+### Removed
+- Support for PHP 7.2
+- Support for PHPUnit 8
+
 ## [4.2.0] - 2020-04-04
 ### Changed
 - Removes the dependency JakubOnderka@PhpConsoleColor ([9b430e4](https://github.com/nunomaduro/collision/commit/9b430e44467e7186f5a7e48c8cdeac0571817286))

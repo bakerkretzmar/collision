@@ -51,20 +51,20 @@ class PhpunitTest extends TestCase
     {
         $output = $this->runCollisionTests([
             '--exclude-group',
-            'fail,custom-name',
+            'fail,environmentTesting,custom-name',
         ]);
 
         $testsDir = dirname(__DIR__, 2);
 
         self::assertStringContainsString(<<<EOF
    WARN  Tests\Feature\ExampleTest
-  s skipped example → This is a skip description
-  i incomplete example → This is a incomplete description
-  r risky example → This test did not perform any assertions  $testsDir/LaravelApp/tests/Feature/ExampleTest.php:21
-  w warn example → This is a warning description
+  - skipped example → This is a skip description
+  … incomplete example → This is a incomplete description
+  ! risky example → This test did not perform any assertions  $testsDir/LaravelApp/tests/Feature/ExampleTest.php:21
+  ! warn example → This is a warning description
   ✓ pass example
 
-  Tests:  1 warnings, 1 risked, 1 incompleted, 1 skipped, 2 passed
+  Tests:  1 warnings, 1 risked, 1 incompleted, 1 skipped, 5 passed
   Time:
 EOF,
             $output
@@ -80,8 +80,8 @@ EOF,
         ]);
 
         self::assertStringContainsString(<<<EOF
-   PASS  /Users/nunomaduro/Work/collision/tests/LaravelApp/tests/Feature/ExampleWithCustomNameTest.php
-  ✓ pass example
+   PASS  my-custom-name
+  ✓ testPassExample
 
   Tests:  1 passed
   Time:
@@ -95,11 +95,11 @@ EOF,
     {
         $output = $this->runCollisionTests([
             '--exclude-group',
-            'fail',
+            'fail,environmentTesting',
         ]);
 
         self::assertStringContainsString(
-            'Tests:  1 warnings, 1 risked, 1 incompleted, 1 skipped, 3 passed',
+            'Tests:  1 warnings, 1 risked, 1 incompleted, 1 skipped, 6 passed',
             $output
         );
     }
@@ -138,12 +138,17 @@ EOF
             'NunoMaduro\Collision\Adapters\Phpunit\Printer',
         ], $arguments), __DIR__ . '/../../..');
 
-        $process->setTty(false);
-        $process->setPty(false);
         $process->run();
+        $output = $process->getOutput();
 
-        $this->assertEquals($exitCode, $process->getExitCode());
+        $failedOutput = <<<EOF
+--- ASSERTION FAIL RECAP ---
+$output
+----------------------------
+EOF;
 
-        return preg_replace('#\\x1b[[][^A-Za-z]*[A-Za-z]#', '', $process->getOutput());
+        $this->assertEquals($exitCode, $process->getExitCode(), $failedOutput);
+
+        return preg_replace('#\\x1b[[][^A-Za-z]*[A-Za-z]#', '', $output);
     }
 }

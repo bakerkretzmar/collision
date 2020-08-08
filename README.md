@@ -1,3 +1,6 @@
+> The current branch `stable` points to the upcoming version of **Collision v5**. If you are looking for the v4 source code, please
+head over to: [v4.x](https://github.com/nunomaduro/collision/tree/v4.x).
+
 <p align="center">
     <img src="https://raw.githubusercontent.com/nunomaduro/collision/stable/docs/logo.png" alt="Collision logo" width="480">
     <br>
@@ -5,7 +8,7 @@
 </p>
 
 <p align="center">
-  <a href="https://travis-ci.org/nunomaduro/collision"><img src="https://img.shields.io/travis/nunomaduro/collision/stable.svg" alt="Build Status"></img></a>
+  <a href="https://github.com/nunomaduro/collision/actions"><img src="https://img.shields.io/github/workflow/status/nunomaduro/collision/Tests.svg" alt="Build Status"></img></a>
   <a href="https://scrutinizer-ci.com/g/nunomaduro/collision"><img src="https://img.shields.io/scrutinizer/g/nunomaduro/collision.svg" alt="Quality Score"></img></a>
   <a href="https://packagist.org/packages/nunomaduro/collision"><img src="https://poser.pugx.org/nunomaduro/collision/d/total.svg" alt="Total Downloads"></a>
   <a href="https://packagist.org/packages/nunomaduro/collision"><img src="https://poser.pugx.org/nunomaduro/collision/v/stable.svg" alt="Latest Stable Version"></a>
@@ -40,7 +43,7 @@ $app->register(\NunoMaduro\Collision\Adapters\Laravel\CollisionServiceProvider::
 
 ## Phpunit adapter
 
-Phpunit must be 8.5.1 or higher.
+Phpunit must be 9.0 or higher.
 
 Add the Collision `printerClass` to your `phpunit.xml` in the `phpunit` section:
 
